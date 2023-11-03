@@ -1,18 +1,18 @@
 export default function sumPairs(numbers, result) {
-  const visited = {};
+  const visited = new Map();
   let complement, number, i;
 
   for (i = 0; i < numbers.length; i++) {
     number = numbers[i];
     complement = result - number;
 
-    if (visited[complement]) {
-      visited[complement].second = number;
+    if (visited.has(complement)) {
+      visited.get(complement).second = number;
     } else {
-      visited[number] = { first: number };
+      visited.set(number, { first: number });
     }
   }
-  for (const v of Object.values(visited)) {
+  for (const [k, v] of visited) {
     if (v.second) {
       return [v.first, v.second];
     }
