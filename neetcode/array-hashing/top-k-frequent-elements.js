@@ -30,7 +30,6 @@ var topKFrequent = function (nums, k) {
   const result = [];
   for (let i = nums.length; i >= 0; i--) {
     let item = array[i];
-    console.log(array);
     if (item !== undefined) {
       for (let j = item.length - 1; j >= 0; j--) {
         if (k > 0) {

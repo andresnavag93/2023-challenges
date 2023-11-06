@@ -1,6 +1,37 @@
 export default function checkIsSameTree(treeA, treeB) {
   // ¡No olvides compartir tu solución en redes!
-  return false;
+  const stackTreeA = [];
+  const stackTreeB = [];
+
+  let nodeA = treeA;
+  let nodeB = treeB;
+
+  while (
+    nodeA != null ||
+    nodeB != null ||
+    stackTreeA.length > 0 ||
+    stackTreeB.length > 0
+  ) {
+    while (nodeA != null) {
+      stackTreeA.push(nodeA);
+      nodeA = nodeA.left;
+    }
+
+    while (nodeB != null) {
+      stackTreeB.push(nodeB);
+      nodeB = nodeB.left;
+    }
+
+    nodeA = stackTreeA.pop();
+    nodeB = stackTreeB.pop();
+    if (nodeA.value !== nodeB.value) {
+      return false;
+    }
+    nodeA = nodeA.right;
+    nodeB = nodeB.right;
+  }
+
+  return true;
 }
 
 const tree = {
