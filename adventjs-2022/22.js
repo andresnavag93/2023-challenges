@@ -1,5 +1,6 @@
 function checkStepNumbers(systemNames, stepNumbers) {
   let visited = {};
+  if (systemNames.length < 1) return false;
   systemNames.forEach((x, i) => {
     visited[x] = visited[x]
       ? [...visited[x], stepNumbers[i]]
@@ -7,13 +8,29 @@ function checkStepNumbers(systemNames, stepNumbers) {
   });
 
   for (const v of Object.values(visited)) {
-    if (v.toString() !== v.sort((a, b) => a - b).toString()) {
+    const vString = v.join();
+    const vString2 = v.sort((a, b) => a - b).join();
+    if (vString !== vString2) {
       return false;
     }
   }
   return true;
 }
 
+function checkStepNumbers2(systemNames, stepNumbers) {
+  let hashMap = new Map();
+
+  return systemNames.every(
+    (name, i, flag, value) => (
+      (value = hashMap.get(name)),
+      (flag = !!(!value && hashMap.set(name, stepNumbers[i]))),
+      !flag &&
+        ((flag = value < stepNumbers[i]), flag) &&
+        hashMap.set(name, stepNumbers[i]),
+      flag
+    )
+  );
+}
 const systemNames = ["tree_1", "tree_2", "house", "tree_1", "tree_2", "house"];
 const stepNumbers = [1, 33, 10, 2, 44, 20];
 
