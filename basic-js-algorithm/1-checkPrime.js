@@ -9,3 +9,7 @@ function isPrime(n) {
   }
   return true;
 }
+
+console.log(isPrime(13));
+console.log(isPrime(33));
+console.log(isPrime(24));
