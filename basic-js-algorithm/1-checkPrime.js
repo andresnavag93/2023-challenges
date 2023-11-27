@@ -1,6 +1,7 @@
 function isPrime(n) {
   if (n === 2 || n === 3) return true;
   if (n % 2 === 0) return false;
+
   let divisor = 3;
   limit = Math.sqrt(n);
   while (divisor < limit) {
